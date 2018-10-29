@@ -26,3 +26,24 @@ body, html {
   z-index: 3000;
 }
 
+//errors pagina
+.errors-page{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-height: 30px;
+  .headline{
+    font-size: 6em;
+  }
+  .error-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+

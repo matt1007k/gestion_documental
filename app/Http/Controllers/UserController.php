@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Caffeinated\Shinobi\Models\Role;
 
 class UserController extends Controller
 {
@@ -32,27 +33,20 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::all();
 
-        return view('admin.usuarios.edit', ['user' => $user]);
+        return view('admin.usuarios.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|',
-            'apellidos' => 'required|string|max:100',
-            'dni' => 'required|max:8',
-        ]);
-
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->apellidos = $request->apellidos;
-        $user->dni = $request->dni;
-        $user->email = $request->email;
-        $user->direccion = $request->direccion;
 
         if($user->save()){
+            $user->roles()->sync($request->get('roles'));
+
             return redirect()->route('usuarios.index')
                 ->with('info', 'El usuario se editó con exitó');
         }else{

@@ -16,16 +16,26 @@ class RolesTableSeeder extends Seeder
         Role::create([
             'name' => 'Admin',
             'slug' => 'admin',
+            'description' => 'Acceso a todos los módulos del sistema',
             'special' => 'all-access',
         ]);
 
         Role::create([
+            'name' => 'Suspendido',
+            'slug' => 'suspendido',
+            'description' => 'Sin acceso a los módulos del sistema',
+            'special' => 'no-access',
+        ]);
+
+        Role::create([
             'name' => 'Jefe',
+            'description' => 'Acceso a los módulos de documento, oficina, usuarios del sistemas',
             'slug' => 'jefe',
         ]);
 
         Role::create([
             'name' => 'Personal',
+            'description' => 'Acceso a los módulos de documentos del sistemas',
             'slug' => 'personal',
         ]);
     }

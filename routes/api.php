@@ -41,3 +41,11 @@ Route::get('usuarios', function (){
         ->rawColumns(['btn', 'estado'])
         ->toJson();
 });
+
+Route::get('roles', function (){
+    return datatables()
+        ->eloquent(Caffeinated\Shinobi\Models\Role::query()->orderBy('id','Desc'))
+        ->addColumn('btn', 'admin.roles.actions')
+        ->rawColumns(['btn'])
+        ->toJson();
+});

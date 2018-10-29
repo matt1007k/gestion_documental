@@ -14,7 +14,7 @@
                 <img src="{{asset('image/user/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{  ucfirst(Auth::user()->name).' '.ucfirst(Auth::user()->apellidos) }}</a>
+                <a href="{{route('perfil', Auth::user()->id)}}" class="d-block">{{  ucfirst(Auth::user()->name).' '.ucfirst(Auth::user()->apellidos) }}</a>
             </div>
         </div>
 
@@ -52,7 +52,6 @@
                         <i class="fas fa-key nav-icon"></i>
                         <p>
                             Roles
-                            <span class="right badge badge-danger">8</span>
                         </p>
                     </a>
                 </li>

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Caffeinated\Shinobi\Models\Role;
+use App\User;
+use App\Office;
+use App\Type;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $rolesCount = Role::count();
+        $usersCount = User::count();
+        $officeCount = Office::count();
+        $typeCount = Type::count();
+
+        return view('admin.dashboard',[
+            'rolesCount' => $rolesCount,
+            'usersCount' => $usersCount,
+            'officeCount' => $officeCount,
+            'typeCount' => $typeCount,
+        ]);
     }
 }

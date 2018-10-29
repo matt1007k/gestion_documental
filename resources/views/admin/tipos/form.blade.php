@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         {{ Form::label('descripcion', 'Descripción')  }}
-        {{ Form::textarea('descripcion', null, ['class' => 'form-control', 'id' => 'descripcion', 'placeholder' => 'Ingrese la descripción', 'row' => '3'])  }}
+        {{ Form::textarea('descripcion', null, ['class' => 'form-control', 'id' => 'descripcion', 'placeholder' => 'Ingrese la descripción', 'size' => '20x5'])  }}
     </div>
 </div>
 <!-- /.card-body -->
@@ -14,10 +14,19 @@
 <div class="card-footer">
     <div class="row">
         <div class="col-md-9">
-            {{ Form::submit(isset($type) ? 'Editar' : 'Guardar', ['class' => 'btn btn-success'])  }}
+            <button type="submit" class="btn btn-success">
+                @if(isset($type))
+                    <i class="fa fa-edit"></i> Editar
+                @else
+                    <i class="fa fa-save"></i> Guardar
+                @endif
+            </button>
         </div>
         <div class="col-md-3">
-            <a href="{{route('tipos.index')}}" class="btn btn-danger">Cancelar</a>
+            <a href="{{route('usuarios.index')}}" class="btn btn-danger">
+                <i class="fas fa-ban"></i>
+                Cancelar
+            </a>
         </div>
     </div>
 </div>
