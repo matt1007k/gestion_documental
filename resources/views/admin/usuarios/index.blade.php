@@ -1,17 +1,17 @@
 @extends('admin.layout')
-@section('title', 'Lista de oficinas')
+@section('title', 'Lista de usuarios')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Administración de oficinas</h1>
+                    <h1 class="m-0 text-dark">Administración de usuarios</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Lista de oficinas</li>
+                        <li class="breadcrumb-item active">Lista de usuarios</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,27 +27,19 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="row">
-                                <div class="col-md">
-                                    <h3 class="card-title">Lista de oficinas</h3>
-                                </div>
-                                <div class="col-md-2">
-                                    @can('offices.create')
-                                        <a href="{{route('oficinas.create')}}" class="btn btn-success btn-sm pull-right">
-                                            <i class="fa fa-plus"></i> Agregar oficina
-                                        </a>
-                                    @endcan
-                                </div>
-                            </div>
+                           <h3 class="card-title">Lista de usuarios</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="table-oficinas" class="table table-bordered table-striped">
+                            <table id="table-usuarios" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        <th>Apellidos</th>
+                                        <th>Dni</th>
+                                        <th>Dirección</th>
+                                        <th>Estado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -76,13 +68,16 @@
 
     <script>
           $(document).ready(function () {
-              $("#table-oficinas").DataTable({
+              $("#table-usuarios").DataTable({
                   "serverSide": true,
-                  "ajax": "{{ url('api/oficinas') }}",
+                  "ajax": "{{ url('api/usuarios') }}",
                   "columns": [
                       {data: 'id'},
-                      {data: 'nombre'},
-                      {data: 'descripcion'},
+                      {data: 'name'},
+                      {data: 'apellidos'},
+                      {data: 'dni'},
+                      {data: 'direccion'},
+                      {data: 'estado'},
                       {data: 'btn'},
                   ],
                   language: {
@@ -111,7 +106,7 @@
                   }
               });
 
-              $("#table-oficinas").on('click', '.btn-delete[data-remote]', function (e) {
+              $("#table-usuarios").on('click', '.btn-delete[data-remote]', function (e) {
                   e.preventDefault();
                   $.ajaxSetup({
                       headers: {
@@ -136,7 +131,7 @@
                               dataType: 'json',
                               data: {method: '_DELETE', submit: true}
                           }).always(function (data) {
-                              $('#table-oficinas').DataTable().draw(false);
+                              $('#table-usuarios').DataTable().draw(false);
                               swal(
                                   'Eliminado!',
                                   'El registro ha sido eliminado.',
@@ -150,7 +145,7 @@
                   })
               });
 
-              $('#table-oficinas').on('draw.dt', function() {
+              $('#table-usuarios').on('draw.dt', function() {
                   $('[data-toggle="tooltip"]').tooltip();
               })
 

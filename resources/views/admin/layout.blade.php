@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Gestión Documental | @yield('title')</title>
 
     <!-- Font Awesome Icons -->
@@ -14,14 +14,23 @@
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/animate/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.css') }}">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
     @stack('style')
+
+    <link href="{{ asset('css/app.css') }}"rel="stylesheet" />
+
+
 
 </head>
 <body class="hold-transition sidebar-mini">
 <div id="app">
+
     <div class="wrapper">
+        @include('admin.partials.message')
 
         <!-- Navbar -->
         @include('admin.partials.nav')
@@ -67,6 +76,17 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
 
+<script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.js') }}"></script>
+
 @stack('script')
+
+<script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
 </body>
 </html>

@@ -16,3 +16,28 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('oficinas', function (){
+    return datatables()
+        ->eloquent(App\Office::query()->orderBy('id','Desc'))
+        ->addColumn('btn', 'admin/oficinas/actions')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('tipos', function (){
+    return datatables()
+        ->eloquent(App\Type::query()->orderBy('id','Desc'))
+        ->addColumn('btn', 'admin/tipos/actions')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('usuarios', function (){
+    return datatables()
+        ->eloquent(App\User::query()->orderBy('id','Desc'))
+        ->addColumn('btn', 'admin.usuarios.actions')
+        ->addColumn('estado', 'admin.usuarios.estado')
+        ->rawColumns(['btn', 'estado'])
+        ->toJson();
+});

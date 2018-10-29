@@ -31,7 +31,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="adminlte/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <img src="{{asset('adminlte/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
@@ -76,9 +76,6 @@
                 <i>
                     <img src="{{asset('image/user/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image" style="width: 30px">
                 </i>
-                <span>
-                    {{  ucfirst(Auth::user()->name).' '.ucfirst(Auth::user()->apellidos) }}
-                </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right animated fadeIn faster">
                 <a href="{{ route('perfil', Auth::user()->id) }}" class="dropdown-item">

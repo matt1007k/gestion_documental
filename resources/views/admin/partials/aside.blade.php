@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('admin') }}" class="brand-link">
         <img src="{{ asset('image/mp-escudo.jpg') }}" alt="Escudo del Ministerio Público" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Gestión Documental</span>
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{route('admin')}}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Active Page</p>
                             </a>
@@ -46,38 +46,47 @@
                         </li>
                     </ul>
                 </li>
+                @can('roles.index')
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-suitcase nav-icon"></i>
+                    <a href="{{route('roles.index')}}" class="nav-link {{ request()->is('roles') ? 'active' : '' }}">
+                        <i class="fas fa-key nav-icon"></i>
                         <p>
-                            Oficinas
+                            Roles
                             <span class="right badge badge-danger">8</span>
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                @endcan
+                @can('users.index')
+                    <li class="nav-item">
+                        <a href="{{route('usuarios.index')}}" class="nav-link {{ request()->is('usuarios') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Usuarios
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can('offices.index')
+                <li class="nav-item">
+                    <a href="{{route('oficinas.index')}}" class="nav-link {{ request()->is('oficinas') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-suitcase"></i>
                         <p>
                             Oficinas
-                            <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+                @endcan
+                @can('types.index')
+                    <li class="nav-item">
+                        <a href="{{route('tipos.index')}}" class="nav-link {{ request()->is('tipos') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Tipo de Documento
+                            </p>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -20,6 +20,11 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Role::create([
+            'name' => 'Jefe',
+            'slug' => 'jefe',
+        ]);
+
+        Role::create([
             'name' => 'Personal',
             'slug' => 'personal',
         ]);
