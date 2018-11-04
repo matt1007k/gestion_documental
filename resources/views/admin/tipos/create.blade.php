@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('tipos.index')}}">Lista de tipo de documentos</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('tipos.index')}}">Tipos de documentos</a></li>
                         <li class="breadcrumb-item active">Registrar tipo de documento</li>
                     </ol>
                 </div><!-- /.col -->

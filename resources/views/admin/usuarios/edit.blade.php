@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('usuarios.index')}}">Lista de usuarios</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('usuarios.index')}}">Todos los usuarios</a></li>
                         <li class="breadcrumb-item active">Editar usuario</li>
                     </ol>
                 </div><!-- /.col -->

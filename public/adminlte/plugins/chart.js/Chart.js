@@ -215,7 +215,7 @@ function keyword(rgb) {
   return reverseNames[rgb.slice(0, 3)];
 }
 
-// helpers
+// Helpers
 function scale(num, min, max) {
    return Math.min(Math.max(min, num), max);
 }
@@ -1674,7 +1674,7 @@ var Chart = require(29)();
 
 Chart.helpers = require(45);
 
-// @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
+// @todo dispatch these Helpers into appropriated Helpers/Helpers.* file and write unit tests!
 require(27)(Chart);
 
 Chart.defaults = require(25);
@@ -1773,7 +1773,7 @@ Chart.pluginService = Chart.plugins;
 Chart.PluginBase = Chart.Element.extend({});
 
 /**
- * Provided for backward compatibility, use Chart.helpers.canvas instead.
+ * Provided for backward compatibility, use Chart.Helpers.canvas instead.
  * @namespace Chart.canvasHelpers
  * @deprecated since version 2.6.0
  * @todo remove at version 3
@@ -9767,7 +9767,7 @@ var exports = module.exports = {
 // DEPRECATIONS
 
 /**
- * Provided for backward compatibility, use Chart.helpers.canvas.clear instead.
+ * Provided for backward compatibility, use Chart.Helpers.canvas.clear instead.
  * @namespace Chart.helpers.clear
  * @deprecated since version 2.7.0
  * @todo remove at version 3
@@ -9776,7 +9776,7 @@ var exports = module.exports = {
 helpers.clear = exports.clear;
 
 /**
- * Provided for backward compatibility, use Chart.helpers.canvas.roundedRect instead.
+ * Provided for backward compatibility, use Chart.Helpers.canvas.roundedRect instead.
  * @namespace Chart.helpers.drawRoundedRectangle
  * @deprecated since version 2.7.0
  * @todo remove at version 3
@@ -9966,7 +9966,7 @@ var helpers = {
 	},
 
 	/**
-	 * The default merger when Chart.helpers.merge is called without merger option.
+	 * The default merger when Chart.Helpers.merge is called without merger option.
 	 * Note(SB): this method is also used by configMerge and scaleMerge as fallback.
 	 * @private
 	 */
@@ -10091,8 +10091,8 @@ module.exports = helpers;
 // DEPRECATIONS
 
 /**
- * Provided for backward compatibility, use Chart.helpers.callback instead.
- * @function Chart.helpers.callCallback
+ * Provided for backward compatibility, use Chart.Helpers.callback instead.
+ * @function Chart.Helpers.callCallback
  * @deprecated since version 2.6.0
  * @todo remove at version 3
  * @private
@@ -10102,7 +10102,7 @@ helpers.callCallback = helpers.callback;
 /**
  * Provided for backward compatibility, use Array.prototype.indexOf instead.
  * Array.prototype.indexOf compatibility: Chrome, Opera, Safari, FF1.5+, IE9+
- * @function Chart.helpers.indexOf
+ * @function Chart.Helpers.indexOf
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private
@@ -10112,8 +10112,8 @@ helpers.indexOf = function(array, item, fromIndex) {
 };
 
 /**
- * Provided for backward compatibility, use Chart.helpers.valueOrDefault instead.
- * @function Chart.helpers.getValueOrDefault
+ * Provided for backward compatibility, use Chart.Helpers.valueOrDefault instead.
+ * @function Chart.Helpers.getValueOrDefault
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private
@@ -10121,8 +10121,8 @@ helpers.indexOf = function(array, item, fromIndex) {
 helpers.getValueOrDefault = helpers.valueOrDefault;
 
 /**
- * Provided for backward compatibility, use Chart.helpers.valueAtIndexOrDefault instead.
- * @function Chart.helpers.getValueAtIndexOrDefault
+ * Provided for backward compatibility, use Chart.Helpers.valueAtIndexOrDefault instead.
+ * @function Chart.Helpers.getValueAtIndexOrDefault
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private
@@ -10373,8 +10373,8 @@ module.exports = {
 // DEPRECATIONS
 
 /**
- * Provided for backward compatibility, use Chart.helpers.easing.effects instead.
- * @function Chart.helpers.easingEffects
+ * Provided for backward compatibility, use Chart.Helpers.easing.effects instead.
+ * @function Chart.Helpers.easingEffects
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private
@@ -10387,7 +10387,7 @@ helpers.easingEffects = effects;
 var helpers = require(42);
 
 /**
- * @alias Chart.helpers.options
+ * @alias Chart.Helpers.options
  * @namespace
  */
 module.exports = {
@@ -10945,7 +10945,7 @@ module.exports = {
  * Provided for backward compatibility, use EventTarget.addEventListener instead.
  * EventTarget.addEventListener compatibility: Chrome, Opera 7, Safari, FF1.5+, IE9+
  * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
- * @function Chart.helpers.addEvent
+ * @function Chart.Helpers.addEvent
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private
@@ -10956,7 +10956,7 @@ helpers.addEvent = addEventListener;
  * Provided for backward compatibility, use EventTarget.removeEventListener instead.
  * EventTarget.removeEventListener compatibility: Chrome, Opera 7, Safari, FF1.5+, IE9+
  * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
- * @function Chart.helpers.removeEvent
+ * @function Chart.Helpers.removeEvent
  * @deprecated since version 2.7.0
  * @todo remove at version 3
  * @private

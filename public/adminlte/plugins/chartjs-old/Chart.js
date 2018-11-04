@@ -186,7 +186,7 @@
 	//Create a dictionary of chart types, to allow for extension of existing types
 	Chart.types = {};
 
-	//Global Chart helpers object for utility methods and classes
+	//Global Chart Helpers object for utility methods and classes
 	var helpers = Chart.helpers = {};
 
 		//-- Basic js utility methods
@@ -2328,7 +2328,7 @@
 
 	var root = this,
 		Chart = root.Chart,
-		//Cache a local reference to Chart.helpers
+		//Cache a local reference to Chart.Helpers
 		helpers = Chart.helpers;
 
 	var defaultConfig = {
@@ -2887,7 +2887,7 @@
 
 	var root = this,
 		Chart = root.Chart,
-		//Cache a local reference to Chart.helpers
+		//Cache a local reference to Chart.Helpers
 		helpers = Chart.helpers;
 
 	var defaultConfig = {

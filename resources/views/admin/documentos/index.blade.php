@@ -1,17 +1,17 @@
 @extends('admin.layout')
-@section('title', 'Lista de oficinas')
+@section('title', 'Lista de documentos')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Administración de oficinas</h1>
+                    <h1 class="m-0 text-dark">Administración de documentos</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Todas las oficinas</li>
+                        <li class="breadcrumb-item active">Documentos</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -29,12 +29,12 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md">
-                                    <h3 class="card-title">Todas las oficinas</h3>
+                                    <h3 class="card-title">Todos los documentos</h3>
                                 </div>
                                 <div class="col-md-2">
-                                    @can('offices.create')
-                                        <a href="{{route('oficinas.create')}}" class="btn btn-success btn-sm pull-right">
-                                            <i class="fa fa-plus"></i> Agregar oficina
+                                    @can('documents.create')
+                                        <a href="{{route('documentos.create')}}" class="btn btn-success btn-sm pull-right">
+                                            <i class="fa fa-plus"></i> Agregar documento
                                         </a>
                                     @endcan
                                 </div>
@@ -42,15 +42,31 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="table-oficinas" class="table table-bordered table-striped">
+                            <table id="table-documentos" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        <th>Origen</th>
+                                        <th>Destino</th>
+                                        <th>Estado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($documents as $document)
+                                        <tr>
+                                            <td>{{ $document->id }} </td>
+                                            <td>{{ $document->titulo }} </td>
+                                            <td>{{ $document->origen}} </td>
+                                            <td>{{ $document->destino }} </td>
+                                            <td>{{ $document->estado }} </td>
+                                            <td>
+                                                @include('admin.documentos.actions')    
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
 
                             </table>
                         </div>
@@ -76,15 +92,8 @@
 
     <script>
           $(document).ready(function () {
-              $("#table-oficinas").DataTable({
-                  "serverSide": true,
-                  "ajax": "{{ url('api/oficinas') }}",
-                  "columns": [
-                      {data: 'id'},
-                      {data: 'nombre'},
-                      {data: 'descripcion'},
-                      {data: 'btn'},
-                  ],
+              $("#table-documentos").DataTable({
+                  "serverSide": false,
                   language: {
                       "sProcessing":     "Procesando...",
                       "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -111,7 +120,7 @@
                   }
               });
 
-              $("#table-oficinas").on('click', '.btn-delete[data-remote]', function (e) {
+              $("#table-documentos").on('click', '.btn-delete[data-remote]', function (e) {
                   e.preventDefault();
                   $.ajaxSetup({
                       headers: {
@@ -136,7 +145,7 @@
                               dataType: 'json',
                               data: {method: '_DELETE', submit: true}
                           }).always(function (data) {
-                              $('#table-oficinas').DataTable().draw(false);
+                              $('#table-documentos').DataTable().draw(false);
                               swal(
                                   'Eliminado!',
                                   'El registro ha sido eliminado.',
@@ -150,10 +159,9 @@
                   })
               });
 
-              $('#table-oficinas').on('draw.dt', function() {
+              $('#table-documentos').on('draw.dt', function() {
                   $('[data-toggle="tooltip"]').tooltip();
               })
-
           });
 
     </script>

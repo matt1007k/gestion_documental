@@ -16,10 +16,14 @@ class UserController extends Controller
         $this->middleware('permission:users.destroy')->only(['destroy']);
     }
 
+    public function perfil($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.usuarios.perfil', ['user' => $user]);
+    }
+
     public function index()
     {
-        alert()->success('You have been logged out.', 'Good bye!');
-
         return view('admin.usuarios.index');
     }
 

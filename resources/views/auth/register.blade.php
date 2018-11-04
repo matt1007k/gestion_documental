@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Registrarse')
 @section('content')
     <div class="card-body login-card-body">
         <p class="login-box-msg">Crear Cuenta</p>

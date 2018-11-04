@@ -11,6 +11,8 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome/css/all.min.css') }}">
     <!-- Theme style -->
+
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/animate/css/animate.css') }}">

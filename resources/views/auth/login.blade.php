@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Ingresar')
 
 @section('content')
     <div class="card-body login-card-body">
@@ -13,8 +14,8 @@
                 </div>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
                 @endif
             </div>
             <div class="input-group mb-3">

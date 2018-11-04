@@ -19,14 +19,13 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', 'HomeController@index')->name('admin');
-    Route::get('/perfil/{user}', function () {
-        return "perfil";
-    })->name('perfil');
+
 
     //Roles
     Route::resource('roles', 'RoleController');
 
     //usuarios
+    Route::get('/perfil/{user}', 'UserController@perfil')->name('perfil');
     Route::resource('usuarios', 'UserController')->except([
         'create', 'store'
     ]);;
@@ -37,15 +36,8 @@ Route::middleware(['auth'])->group(function () {
     //tipo-documentos
     Route::resource('tipos', 'TipoDocumentoController');
 
-
     //documentos
-    Route::get('documentos', 'DocumentoController@index')->name('documentos.index')->middleware('permission:documents.index');
-    Route::get('documentos/{documento}', 'DocumentoController@show')->name('documentos.show')->middleware('permission:documents.show');
-    Route::get('documentos/create', 'DocumentoController@create')->name('documentos.create')->middleware('permission:documents.create');
-    Route::post('documentos/store', 'DocumentoController@store')->name('documentos.store')->middleware('permission:documents.create');
-    Route::get('documentos/{documento}/edit', 'DocumentoController@edit')->name('documentos.edit')->middleware('permission:documents.edit');
-    Route::put('documentos/{documento}', 'DocumentoController@update')->name('documentos.update')->middleware('permission:documents.edit');
-    Route::delete('documentos/{documento}', 'DocumentoController@destroy')->name('documentos.destroy')->middleware('permission:documents.destroy');
+    Route::resource('documentos', 'DocumentoController');
 
 });
 

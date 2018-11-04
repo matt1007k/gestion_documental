@@ -29,7 +29,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md">
-                                    <h3 class="card-title">Lista de tipo de documentos</h3>
+                                    <h3 class="card-title">Todos los tipos de documentos</h3>
                                 </div>
                                 <div class="col-md-2">
                                     @can('offices.create')

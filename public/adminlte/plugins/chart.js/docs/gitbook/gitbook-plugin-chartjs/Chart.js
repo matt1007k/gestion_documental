@@ -215,7 +215,7 @@ function keyword(rgb) {
   return reverseNames[rgb.slice(0, 3)];
 }
 
-// helpers
+// Helpers
 function scale(num, min, max) {
    return Math.min(Math.max(min, num), max);
 }
@@ -3698,7 +3698,7 @@ module.exports = function(Chart) {
 'use strict';
 
 module.exports = function(Chart) {
-	// Global Chart canvas helpers object for drawing items to canvas
+	// Global Chart canvas Helpers object for drawing items to canvas
 	var helpers = Chart.canvasHelpers = {};
 
 	helpers.drawPoint = function(ctx, pointStyle, radius, x, y) {
@@ -4991,7 +4991,7 @@ module.exports = function(Chart) {
 var color = require(3);
 
 module.exports = function(Chart) {
-	// Global Chart helpers object for utility methods and classes
+	// Global Chart Helpers object for utility methods and classes
 	var helpers = Chart.helpers = {};
 
 	// -- Basic js utility methods

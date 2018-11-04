@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Lista de roles</li>
+                        <li class="breadcrumb-item active">Todos los roles</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

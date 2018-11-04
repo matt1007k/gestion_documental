@@ -24,7 +24,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="{{route('admin')}}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
+                    <a href="{{route('admin')}}" class="nav-link {{  active('admin') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('admin')}}" class="nav-link active">
+                            <a href="{{route('admin')}}" class="nav-link  {{  active('admin') }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Active Page</p>
                             </a>
@@ -48,7 +48,7 @@
                 </li>
                 @can('roles.index')
                 <li class="nav-item">
-                    <a href="{{route('roles.index')}}" class="nav-link {{ request()->is('roles') ? 'active' : '' }}">
+                    <a href="{{route('roles.index')}}" class="nav-link {{  active('roles') }}">
                         <i class="fas fa-key nav-icon"></i>
                         <p>
                             Roles
@@ -58,7 +58,7 @@
                 @endcan
                 @can('users.index')
                     <li class="nav-item">
-                        <a href="{{route('usuarios.index')}}" class="nav-link {{ request()->is('usuarios') ? 'active' : '' }}">
+                        <a href="{{route('usuarios.index')}}" class="nav-link {{  active('usuarios') }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Usuarios
@@ -68,7 +68,7 @@
                 @endcan
                 @can('offices.index')
                 <li class="nav-item">
-                    <a href="{{route('oficinas.index')}}" class="nav-link {{ request()->is('oficinas') ? 'active' : '' }}">
+                    <a href="{{route('oficinas.index')}}" class="nav-link {{  active('oficinas') }}">
                         <i class="nav-icon fas fa-suitcase"></i>
                         <p>
                             Oficinas
@@ -78,10 +78,20 @@
                 @endcan
                 @can('types.index')
                     <li class="nav-item">
-                        <a href="{{route('tipos.index')}}" class="nav-link {{ request()->is('tipos') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <a href="{{route('tipos.index')}}" class="nav-link {{  active('tipos') }}">
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Tipo de Documento
+                                Tipo de Documentos
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can('documents.index')
+                    <li class="nav-item">
+                        <a href="{{route('documentos.index')}}" class="nav-link {{ active('documentos') }}">
+                            <i class="nav-icon far fa-file-alt"></i>
+                            <p>
+                                Documentos
                             </p>
                         </a>
                     </li>
