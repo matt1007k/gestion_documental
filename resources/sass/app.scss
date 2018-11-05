@@ -26,6 +26,30 @@ body, html {
   z-index: 3000;
 }
 
+
+/* attachment */
+
+.box-attachment-icon {
+  text-align: center;
+  font-size: 65px;
+  color: #666;
+  /* padding: 20px 10px; */
+}
+
+.box-attachment-name {
+  font-weight: 700;
+  color: #666;
+}
+
+.box-attachment-icon, .box-attachment-info, .box-attachment-size {
+  display: block;
+}
+
+.box-attachment-info {
+  padding: 10px;
+  background: #f4f4f4;
+}
+
 //errors pagina
 .errors-page{
   width: 100%;
@@ -47,3 +71,24 @@ body, html {
 
 }
 
+//modal full screen
+.modal-full {
+  min-width: 100%;
+  margin: 0;
+}
+
+.modal-full .modal-content {
+  min-height: 100vh;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}

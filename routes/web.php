@@ -38,6 +38,16 @@ Route::middleware(['auth'])->group(function () {
 
     //documentos
     Route::resource('documentos', 'DocumentoController');
+    Route::get('/documentos/elaborar', 'AccionController@elaborar')->name('documentos.elaborar');
+    Route::get('/documentos/asignar', 'AccionController@asignar')->name('documentos.asignar');
+    Route::get('/documentos/emitir', 'AccionController@emitir')->name('documentos.emitir');
+
+    Route::get('/listado', 'HomeController@listado')->name('documentos.listado');
+    Route::get('/asignar/documento/{id}', 'HomeController@asignar')->name('documento.asignar');
+    Route::get('/emitir/documento/{id}', 'HomeController@emitir')->name('documento.emitir');
+
+    Route::post('/asignado/documento', 'AccionController@asignado')->name('documento.asignado');
+    Route::post('/enviado/documento', 'AccionController@enviado')->name('documento.enviado');
 
 });
 

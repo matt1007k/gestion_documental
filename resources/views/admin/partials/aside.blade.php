@@ -23,28 +23,13 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview">
+                <li class="nav-item">
                     <a href="{{route('admin')}}" class="nav-link {{  active('admin') }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
                         <p>
                             Dashboard
-                            <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('admin')}}" class="nav-link  {{  active('admin') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 @can('roles.index')
                 <li class="nav-item">
@@ -87,13 +72,46 @@
                     </li>
                 @endcan
                 @can('documents.index')
-                    <li class="nav-item">
-                        <a href="{{route('documentos.index')}}" class="nav-link {{ active('documentos') }}">
-                            <i class="nav-icon far fa-file-alt"></i>
+                    <li class="nav-item has-treeview {{ request()->is('documentos*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ active('documentos*') }}">
+                            <i class="nav-icon far fa-file"></i>
                             <p>
                                 Documentos
+                                <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('documentos.index')}}" class="nav-link  {{  active('documentos') }}">
+                                    <i class="fas fa-file-alt nav-icon"></i>
+                                    <p>Todos los documento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('documentos.create')}}" class="nav-link  {{  active('documentos/create') }}">
+                                    <i class="fas fa-file-import nav-icon"></i>
+                                    <p>Registrar documento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('documentos.elaborar')}}" class="nav-link {{ active('documentos/elaborar') }}">
+                                    <i class="fas fa-file-contract nav-icon"></i>
+                                    <p>Elaborar documento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('documentos.asignar')}}" class="nav-link {{ active('documentos/asignar') }}">
+                                    <i class="fas fa-file-signature nav-icon"></i>
+                                    <p>Asignar documento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('documentos.emitir')}}" class="nav-link {{ active('documentos/emitir') }}">
+                                    <i class="fas fa-file-export nav-icon"></i>
+                                    <p>Enviar documento</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endcan
             </ul>

@@ -1607,7 +1607,7 @@ if (token) {
   /** Detect free variable `process` from Node.js. */
   var freeProcess = moduleExports && freeGlobal.process;
 
-  /** Used to access faster Node.js Helpers. */
+  /** Used to access faster Node.js helpers. */
   var nodeUtil = (function() {
     try {
       // Use `util.types` for Node.js 10+.
@@ -21756,7 +21756,7 @@ module.exports = function spread(callback) {
 
 var emptyObject = Object.freeze({});
 
-// these Helpers produces better vm code in JS engines due to their
+// these helpers produces better vm code in JS engines due to their
 // explicitness and function inlining
 function isUndef (v) {
   return v === undefined || v === null
@@ -22652,7 +22652,7 @@ Observer.prototype.observeArray = function observeArray (items) {
   }
 };
 
-// Helpers
+// helpers
 
 /**
  * Augment an target Object or Array by intercepting
@@ -26257,7 +26257,7 @@ function initRender (vm) {
 }
 
 function renderMixin (Vue) {
-  // install runtime convenience Helpers
+  // install runtime convenience helpers
   installRenderHelpers(Vue.prototype);
 
   Vue.prototype.$nextTick = function (fn) {

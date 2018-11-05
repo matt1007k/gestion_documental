@@ -58,6 +58,7 @@
         <!-- /.control-sidebar -->
 
         @include('admin.partials.footer')
+        @include('admin.pages.form.busqueda')
     </div>
 <!-- ./wrapper -->
 </div>

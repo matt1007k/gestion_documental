@@ -22,16 +22,21 @@ class DocumentoController extends Controller
 
     public function index()
     {
-        $documents = Document::where('user_id', auth()->user()->id)->orderBy('id','Desc')->get();
+        $documents = Document::where('user_id', auth()->user()->id)->orderBy('id','desc')->get();
         return view('admin.documentos.index', compact('documents'));
     }
 
     public function show($id)
     {
         $document = Document::findOrFail($id);
-
-        return  view('admin.documentos.show', ['document' => $document]);
+        $pathArchivo = str_replace('storage','public',$document->archivo);
+        $sizeArchivo = Storage::size($pathArchivo) / 1024;
+        return  view('admin.documentos.show', [
+            'document' => $document,
+            'sizeArchivo' => $sizeArchivo,
+        ]);
     }
+    
 
     public function create()
     {
@@ -59,9 +64,10 @@ class DocumentoController extends Controller
         $document->type_id = $request->tipo;
         $document->user_id = auth()->user()->id;
 
-        // Almacenamos o subirmos a la carpeta storage/app/public
-        $archivo = $request->file('archivo')->store('public');
-        // Creamos la ruta con storage/nombre_archivo.ext
+        $getFileExt  = $request->file('archivo')->getClientOriginalExtension();
+        // Almacenamos o subirmos a la carpeta storage/app/public/nombre_archivo.ext
+        $archivo = $request->file('archivo')->storeAs('public', str_slug($document->titulo).'.'.$getFileExt);
+        // Creamos la ruta del storage/nombre_archivo.ext 
         $document->archivo = Storage::url($archivo);
 
         if ($document->save()){
@@ -85,6 +91,9 @@ class DocumentoController extends Controller
         $documents = Document::where('id', '!=', $id)->orderBy('titulo')->get();
         $tipos = Type::pluck('nombre', 'id');
         $types = Type::orderBy('nombre')->get();
+       
+        $pathArchivo = str_replace('storage','public',$document->archivo);
+        $sizeArchivo = Storage::size($pathArchivo) / 1024;
 
         return view('admin.documentos.edit', [
             'document' => $document,
@@ -92,6 +101,7 @@ class DocumentoController extends Controller
             'types' => $types,
             'documents' => $documents,
             'tipos' => $tipos,
+            'sizeArchivo' => $sizeArchivo
         ]);
     }
 
@@ -116,7 +126,8 @@ class DocumentoController extends Controller
             // Eliminamos el archivo del sistema
             Storage::delete($pathArchivo);
             // Guardamos el archivo
-            $archivo = $request->file('archivo')->store('public');
+            $getFileExt  = $request->file('archivo')->getClientOriginalExtension();
+            $archivo = $request->file('archivo')->storeAs('public', str_slug($document->titulo).'.'.$getFileExt);
             $document->archivo = Storage::url($archivo);
         }
 

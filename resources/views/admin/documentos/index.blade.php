@@ -60,7 +60,13 @@
                                             <td>{{ $document->titulo }} </td>
                                             <td>{{ $document->origen}} </td>
                                             <td>{{ $document->destino }} </td>
-                                            <td>{{ $document->estado }} </td>
+                                            <td>
+                                                @if ($document->estado == "pendiente")
+                                                    <div class="badge badge-warning">{{ucfirst($document->estado)}}</div>
+                                                @else
+                                                    <div class="badge badge-success">{{ucfirst($document->estado)}}</div>
+                                                @endif
+                                            </td>
                                             <td>
                                                 @include('admin.documentos.actions')    
                                             </td>
@@ -94,6 +100,7 @@
           $(document).ready(function () {
               $("#table-documentos").DataTable({
                   "serverSide": false,
+                  "order": [[ 0, "desc" ]],
                   language: {
                       "sProcessing":     "Procesando...",
                       "sLengthMenu":     "Mostrar _MENU_ registros",
