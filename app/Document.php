@@ -28,4 +28,12 @@ class Document extends Model
     {
         return $this->belongsToMany(Document::class, 'adjuntados', 'document_id', 'adjuntado_id')->withTimestamps();
     }
+
+    public  function  assigns(){
+        return $this->hasMany('App\Assign');
+    }
+
+    public  function  emisions(){
+        return $this->hasMany('App\Emision');
+    }
 }

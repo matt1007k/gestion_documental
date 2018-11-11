@@ -143,6 +143,38 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
 
+        Permission::create([
+            'name'          => 'Elaborar una documento',
+            'slug'          => 'documents.elaborar',
+            'description'   => 'Elaborar una documento en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Asignar una documento',
+            'slug'          => 'documents.asignar',
+            'description'   => 'Asignar una documento en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Documentos asignados',
+            'slug'          => 'documents.asignados',
+            'description'   => 'Ver los documentos asignados en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Atender un documento',
+            'slug'          => 'documents.atender',
+            'description'   => 'Atender una documento en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Enviar una documento',
+            'slug'          => 'documents.enviar',
+            'description'   => 'Enviar una documento en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Documentos enviados',
+            'slug'          => 'documents.enviados',
+            'description'   => 'Ver los documentos enviados en el sistema',
+        ]);
+
+
 
 
     }

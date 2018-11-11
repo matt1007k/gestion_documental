@@ -4,12 +4,12 @@
         <div class="col-md-6">
             @if (isset($document))  
                 <div class="form-group"> 
-                    {{ Form::label('documento', 'El documento')  }}
+                    {{ Form::label('documento', 'El documento a enviar')  }}
                     <p>{{$document->titulo}}</p>
                     {{ Form::hidden('documento', $document->id, ['id' => 'documento']  ) }}             
                 </div>
                 <div class="form-group">
-                    {{ Form::label('oficina', 'Oficina')  }}
+                    {{ Form::label('oficina', 'La Oficina a enviar')  }}
                     <select class="form-control select2 {{ $errors->has('oficina') ? 'is-invalid' : ''}}" name="oficina" id="oficina">
                         <option value=" " selected="selected">Seleccione la oficina a enviar</option>
                         @foreach($offices as $office)
@@ -20,18 +20,18 @@
                 </div>
             @else
                 <div class="form-group">
-                    {{ Form::label('documento', 'documents de documento')  }}
+                    {{ Form::label('documento', 'El documento a enviar')  }}
                     <select class="form-control select2 {{ $errors->has('documento') ? 'is-invalid' : ''}}" name="documento" id="documento">
                         <option value="" selected="selected">Seleccione el documento</option>
-                        @foreach($documents as $document)
-                            <option value="{{$document->id}}" {{  old('documento', isset($document->id)) == $document->id ? 'selected' : '' }}>{{$document->titulo}}</option>
+                        @foreach($documents as $documento)
+                            <option value="{{$documento->id}}" {{  old('documento', isset($document->id)) == $documento->id ? 'selected' : '' }}>{{$documento->titulo}}</option>
                         @endforeach
                     </select>
                     {!! $errors->first('documento', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
     
                 <div class="form-group">
-                    {{ Form::label('oficina', 'Oficina')  }}
+                    {{ Form::label('oficina', 'La oficina a enviar')  }}
                     <select class="form-control select2 {{ $errors->has('oficina') ? 'is-invalid' : ''}}" name="oficina" id="oficina">
                         <option value="" selected="selected">Seleccione la oficina a enviar</option>
                         @foreach($offices as $office)

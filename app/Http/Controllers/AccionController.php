@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\AssignDocument;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Assign;
@@ -12,6 +13,16 @@ use App\User;
 
 class AccionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:documents.elaborar')->only(['elaborar']);
+        $this->middleware('permission:documents.asignar')->only(['asignar', 'asignado']);
+        $this->middleware('permission:documents.asignados')->only(['asignados']);
+        $this->middleware('permission:documents.atender')->only(['atender']);
+        $this->middleware('permission:documents.enviar')->only(['enviar', 'enviado']);
+        $this->middleware('permission:documents.enviados')->only(['enviados']);
+    }
+
     public function elaborar()
     {
         
@@ -20,22 +31,40 @@ class AccionController extends Controller
     public function asignar()
     {
         $documents = Document::orderBy('titulo', 'DESC')->get();
-        $users = User::orderBy('name', 'DESC')->get();
+        $users = User::where('id', '!=', auth()->user()->id)->orderBy('name', 'DESC')->get();
 
-        return view('admin.pages.asignar', [
+        return view('admin.pages.asignarDocumento', [
             'documents' => $documents, 
             'users' => $users
+        ]);
+    }
+
+    public function asignados()
+    {
+        $assigns = Assign::where('user_id', auth()->user()->id)->orderBy('fecha', 'DESC')->paginate(8);
+
+        return view('admin.pages.asignados', [
+            'assigns' => $assigns,
         ]);
     }
 
     public function emitir()
     {
         $documents = Document::orderBy('titulo', 'DESC')->get();
-        $users = User::orderBy('name', 'DESC')->get();
+        $offices = Office::orderBy('nombre', 'DESC')->get();
 
-        return view('admin.pages.asignar', [
-            'documents' => $documents, 
-            'users' => $users
+        return view('admin.pages.enviarDocumento', [
+            'documents' => $documents,
+            'offices' => $offices
+        ]);
+    }
+
+    public function enviados()
+    {
+        $emisions = Emision::orderBy('fecha', 'DESC')->paginate(8);
+
+        return view('admin.pages.enviados', [
+            'emisions' => $emisions,
         ]);
     }
 
@@ -54,6 +83,13 @@ class AccionController extends Controller
         $assign->fecha = new \DateTime('now');
 
         if ($assign->save()){
+
+            //Buscamos al usuario a enviar la notificación
+            $personal = User::find($request->get('personal'));
+
+            // Le enviamos una notificación con la asignación de documentos
+            $personal->notify(new AssignDocument($assign->document));
+
             return redirect()->route('documentos.index')
                 ->with('info', 'El documento se asigno con exitó');
         }else{

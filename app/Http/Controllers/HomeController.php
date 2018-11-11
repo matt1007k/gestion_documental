@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Assign;
+use App\Emision;
 use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
 use App\User;
@@ -28,16 +30,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $rolesCount = Role::count();
+        $documentsCount = Document::where('user_id', auth()->user()->id)->count();
         $usersCount = User::count();
         $officeCount = Office::count();
-        $typeCount = Type::count();
+        $assignCount = Assign::where('user_id', auth()->user()->id)->count();
 
         return view('admin.dashboard',[
-            'rolesCount' => $rolesCount,
+            'documentsCount' => $documentsCount,
             'usersCount' => $usersCount,
             'officeCount' => $officeCount,
-            'typeCount' => $typeCount,
+            'assignCount' => $assignCount,
         ]);
     }
 

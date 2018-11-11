@@ -29,7 +29,7 @@ class RolesTableSeeder extends Seeder
 
         Role::create([
             'name' => 'Jefe',
-            'description' => 'Acceso a los módulos de documento, oficina, usuarios del sistemas',
+            'description' => 'Acceso a los módulos de documentos, oficinas, usuarios del sistemas',
             'slug' => 'jefe',
         ]);
 
