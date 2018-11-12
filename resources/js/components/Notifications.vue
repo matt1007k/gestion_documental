@@ -6,7 +6,7 @@
             <span class="badge badge-warning navbar-badge" v-if="notifications.length" v-text="notifications.length"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right animated fadeIn" v-if="notifications.length">
-            <a @click="markAllAsRead" href="#" class="dropdown-item dropdown-footer">Marcar todo como leído</a>
+            <a @click="markAllAsRead" class="dropdown-item dropdown-footer" style="cursor: pointer;">Marcar todo como leído</a>
             <div class="dropdown-divider"></div>
 
 
@@ -17,7 +17,7 @@
                     </div>
                 </div>
 
-                <span class="float-right text-muted text-sm">3 mins</span>
+                <span class="float-right text-muted text-sm">{{ notification.data.fecha['date']}}</span>
             </a>
 
             <div class="dropdown-divider"></div>
@@ -28,6 +28,7 @@
 
 <script>
     export default {
+        props: ['userid'],
         data(){
           return{
               notifications: []
@@ -42,7 +43,7 @@
                     .catch(error => console.log(error));
             },
             markAllAsRead(){
-                axios.post('/notificaciones')
+                axios.post('notificaciones/')
                     .then(response => {
                         this.notifications = response.data;
                     })
@@ -54,10 +55,15 @@
                 return text.substring(0, length) + suffix;
             }
         },
-        mounted() {
+        created() {
             axios.get('notificaciones/').then(response => {
                 this.notifications = response.data;
             }).catch(error => console.log(error));
+
+            Echo.private(`App.User.${this.userid}`)
+            .notification((notification) => {
+                console.log(notification);
+            });
         }
     }
 </script>

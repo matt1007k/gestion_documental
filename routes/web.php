@@ -48,9 +48,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/listado', 'HomeController@listado')->name('documentos.listado');
     Route::get('/asignar/documento/{id}', 'HomeController@asignar')->name('documento.asignar');
     Route::get('/emitir/documento/{id}', 'HomeController@emitir')->name('documento.emitir');
+    //Route::get('/atender/documento/{id}', 'HomeController@atender')->name('documento.atender');
 
     Route::post('/asignado/documento', 'AccionController@asignado')->name('documento.asignado');
     Route::post('/enviado/documento', 'AccionController@enviado')->name('documento.enviado');
+    Route::post('/atendido/documento', 'AccionController@atendido')->name('documento.atendido');
+    Route::post('/elaborado/documento', 'AccionController@elaborado')->name('documento.elaborado');
 
     // Notificaciones
     Route::get('notificaciones', 'NotificationsController@index')->name('notifications.index');

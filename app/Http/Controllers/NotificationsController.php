@@ -33,7 +33,17 @@ class NotificationsController extends Controller
         return back()->with('info', 'Notificación marcada como leída');
     }
 
-    public function readAll(){
+    public function readAll()
+    {
+        $user = \App\User::find(auth()->user()->id);
 
+        $user->unreadNotifications()->update(['read_at' => now()]);
+
+        if (request()->ajax()){
+            return auth()->user()->unreadNotifications;
+        }
+
+
+        return back()->with('info', 'Notificaciones marcadas como leída');
     }
 }

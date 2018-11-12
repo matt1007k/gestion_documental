@@ -101,15 +101,16 @@
                                         </p>
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center justify-content-center flex-column">
-                                        @if ($asignado->document->estado == 'pendiente')
-                                            <a href="#" class="btn btn-block btn-outline-info btn-flat">
+                                        @can('documents.atender')
+                                            <a href="#modalAtender" role="button" data-toggle="modal"  class="btn btn-block btn-outline-info btn-flat">
                                                 <i class="fas file-medical-alt"></i>
                                                 Atender
                                             </a>
-                                        @else
-                                        @endif
-
+                                        @endcan
                                     </div>
+
+                                    <!-- modal atender -->
+                                    @include('admin.documentos.atender', ['document' => $asignado->document])
                                 </div>
                             </div>
                             <!-- /.card-body -->

@@ -11,15 +11,16 @@ class AssignDocument extends Notification
 {
     use Queueable;
 
-    protected $document;
+    protected $document, $fecha;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($document)
+    public function __construct($document, $fecha)
     {
         $this->document = $document;
+        $this->fecha = $fecha;
     }
 
     /**
@@ -30,7 +31,7 @@ class AssignDocument extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -58,6 +59,17 @@ class AssignDocument extends Notification
         return [
             'link' => route('documentos.asignados'),
             'text' => 'Asignado: '.$this->document->titulo,
+            'fecha' => $this->fecha
+        ];
+    }
+
+    public function toBroadcast($notifiable){
+        return [
+            'data' => [
+                'link' => route('documentos.asignados'),
+                'text' => 'Asignado: '.$this->document->titulo,
+                'fecha' => $this->fecha
+            ]
         ];
     }
 }

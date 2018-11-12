@@ -35,18 +35,18 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @foreach ($documents as $document)
+                    @forelse($documents as $document)
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">                             
                             <div class="row">
                                 <div class="col-md-2">
                                     <ul class="list-unstyled clearfix">
-                                        <?php
+                                        @php
                                             $pathArchivo = str_replace('storage','public',$document->archivo);
                                             $sizeArchivo = Storage::size($pathArchivo) / 1024;
                                                                                      
-                                        ?>
+                                        @endphp
                                         @if (explode(".", $document->archivo)[1] == "pdf")
                                             <li>
                                                 <span class="box-attachment-icon no-padding text-danger"><i class="far fa-file-pdf"></i></span>
@@ -102,19 +102,25 @@
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center justify-content-center flex-column">
                                     @if ($document->estado == 'pendiente')
+                                        @can('documents.asignar')
                                         <a href="{{ route('documento.asignar', $document->id) }} " class="btn btn-block btn-outline-info btn-flat">
                                             <i class="fas fa-file-signature"></i>
                                             Asignar
                                         </a>
+                                        @endcan
+                                        @can('documents.enviar')
                                         <a href="{{ route('documento.emitir', $document->id) }} " class="btn btn-block btn-outline-primary btn-flat">
                                             <i class="fas fa-file-export"></i>
                                             Enviar
                                         </a>
-                                    @else                                        
+                                        @endcan
+                                    @else
+                                        @can('documents.enviar')
                                         <a href="{{ route('documento.emitir', $document->id) }} " class="btn btn-block btn-outline-primary btn-flat">
                                             <i class="fas fa-file-export"></i>
                                             Enviar
                                         </a>
+                                        @endcan
                                     @endif
                                     
                                 </div>
@@ -123,7 +129,18 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
-                    @endforeach 
+                    @empty
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <h4><span  class="badge badge-danger">No hay ningún resultado...</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
                     
                 </div>
             </div>

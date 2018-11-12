@@ -35,11 +35,11 @@
                     <!-- Message End -->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="#" class="dropdown-item dropdown-footer">Ver todos los mensajes</a>
             </div>
         </li>
         <!-- Notifications Dropdown Menu -->
-        <notifications></notifications>
+        <notifications userId="{{auth()->user()->id}}"></notifications>
 
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i

@@ -31,6 +31,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#modalFiltro" role="button" data-toggle="modal" class="nav-link">
+                        <i class="fas fa-search nav-icon"></i>
+                        <p>
+                            Búscar documentos
+                        </p>
+                    </a>
+                </li>
                 @can('roles.index')
                 <li class="nav-item">
                     <a href="{{route('roles.index')}}" class="nav-link {{  active('roles') }}">

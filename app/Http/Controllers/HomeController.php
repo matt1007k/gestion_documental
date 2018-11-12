@@ -45,8 +45,29 @@ class HomeController extends Controller
 
     public function listado(Request $request)
     {
-        
+        $texto = $request->get('texto');
+        $titulo = $request->get('titulo');
+        $asunto = $request->get('asunto');
+        $origen = $request->get('origen');
+        $destino = $request->get('destino');
+        $fecha1 = $request->get('fecha1');
+        $fecha2 = $request->get('fecha2');
+        $tipo = $request->get('tipo');
+        $estado = $request->get('estado');
+
         $documents = Document::where('user_id', auth()->user()->id)
+                    ->texto($texto)
+                    ->titulo($titulo)
+                    ->asunto($asunto)
+                    ->origen($origen)
+                    ->destino($destino)
+                    ->fechas($fecha1, $fecha2)
+                    ->whereHas('type', function ($query) use ($tipo) {
+                        if($tipo){
+                            $query->where('nombre', 'LIKE', "%$tipo%");
+                        }
+                    })
+                    ->estado($estado)
                     ->orderBy('id', 'DESC')->paginate(6);
 
         return view('admin.pages.listado', compact('documents'));

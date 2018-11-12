@@ -19,6 +19,7 @@ Vue.component('notifications', require('./components/Notifications.vue'));
 Vue.component('delete', require('./components/Delete.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });
 
