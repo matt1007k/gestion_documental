@@ -11,6 +11,7 @@ use App\Emision;
 use App\Document;
 use App\Office;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 
 class AccionController extends Controller
 {
@@ -82,12 +83,62 @@ class AccionController extends Controller
     public function elaborado(Request $request)
     {
         $this->validate($request, [
-            'personal' => 'required',
-            'documento' => 'required',
-            'observacion' => 'required|max:250'
+            'titulo' => 'required',
+            'asunto' => 'required|max:250',
+            'origen' => 'required',
+            'destino' => 'required',
+            'tipo' => 'required',
         ]);
 
+        
 
+        $document = new Document();
+        
+        $document->cod_documento = $request->cod_documento;
+        $document->titulo = $request->titulo;
+        $document->asunto = $request->asunto;
+        $document->origen = $request->origen;
+        $document->destino = $request->destino;
+        $document->type_id = $request->tipo;
+        $document->user_id = auth()->user()->id;
+
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+        $newSection = $phpWord->addSection();
+        //if ($request->tipo == "Informe técnico") {
+            $newSection->addText(
+                '"Documento elaborado. '
+                    . 'Informe de soporte tecnico." '
+                    . '(MIN)'
+            );
+       // } else {
+            # code...
+       // }
+        // Saving the document as OOXML file...
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+
+        try {
+            $archivo = str_slug($document->titulo).'.docx';
+            $document->archivo = Storage::url($archivo);
+            $objWriter->save(storage_path($archivo));
+        } catch (\Throwable $th) {
+            
+        }
+        //dd($document->archivo);
+        return response()->download(storage_path($archivo));
+   
+        
+
+        if ($document->save()){
+
+            return response()->download(storage_path($archivo))->with('info', 'El documento se elaborado con exitó');
+      //return redirect()->route('documentos.index')
+                //->with('info', 'El documento se elaborado con exitó');
+        }else{
+            return back();
+        }
+       
     }
 
     public function asignado(Request $request)
